@@ -1,0 +1,42 @@
+@use "../tools/mixins" as mixin;
+@use "../base/variables" as variable;
+
+.Card {
+  background-color: map-get(variable.$colors, "card");
+  height: 34.375rem;
+  width: 25rem;
+  padding: 0.625rem;
+  border-radius: 1.25rem;
+  @include mixin.flex(flex-start, center, column);
+  &-title {
+    @include mixin.flex;
+    width: 100%;
+    height: 10%;
+    font-size: 1.875rem;
+    color: map-get(variable.$colors, "card-black");
+    font-family: map-get(variable.$fonts, "title");
+  }
+  &-price {
+    @include mixin.flex;
+    width: 100%;
+    height: 60%;
+    &--value {
+      font-size: 8.75rem;
+      color: map-get(variable.$colors, "card-bold");
+      font-family: map-get(variable.$fonts, "title");
+    }
+    &--span {
+      font-size: 1.5625rem;
+      color: map-get(variable.$colors, "card-light");
+      font-family: map-get(variable.$fonts, "text");
+    }
+  }
+  &-info {
+    width: 100%;
+    height: 30%;
+    padding: 0 10px 0 10px;
+    @include mixin.flex(center, flex-start);
+    color: map-get(variable.$colors, "card-black");
+    font-family: map-get(variable.$fonts, "text");
+  }
+}

@@ -1,0 +1,37 @@
+@use "../tools/mixins" as mixin;
+@use "../base/variables" as variable;
+
+body {
+  background:  #e3e5e5  ;
+  background: linear-gradient(
+    50deg,
+    #e3e5e5 
+  );
+  overflow: hidden;
+}
+
+.Navbar {
+  @include mixin.flex(space-around, center);
+  background:#e3e5e5 ;
+  background: linear-gradient(
+    90deg,
+   #2a6d6d  
+  );
+  padding: 1rem;
+
+  &-img {
+    width: 40%;
+    height: 60%px;
+    
+  }
+
+  &-links {
+    @include mixin.flex(flex-end);
+    gap: 0.9375rem;
+    width: 100%;
+    &--link{
+      font-family: map-get(variable.$fonts, "title" );
+      color: map-get(variable.$colors, "bold" );
+    }
+  }
+}

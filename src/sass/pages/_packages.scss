@@ -1,0 +1,8 @@
+@use "../tools/mixins" as mixin;
+@use "../base/variables" as variable;
+
+.Packages {
+    height: 90vh;
+    @include mixin.flex(space-evenly, center);
+    display: flex;
+}

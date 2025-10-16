@@ -1,0 +1,210 @@
+@use "../tools/mixins" as mixin;
+@use "../base/variables" as variable;
+
+.Contacts {
+  width: 100%;
+
+  /* Hero / Sobre Nosotros */
+  &-hero {
+    @include mixin.flex(center, center, column);
+    padding: 2rem 1rem;
+    background: linear-gradient(
+      50deg,
+      #2a6d6d,
+      #2d7c7c
+    ); // gradiente del Navbar
+    width: 100%;
+
+    &--h1 {
+      font-family: map-get(variable.$fonts, "title");
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #ffffff; // SOLO texto de Sobre Nosotros en blanco
+    }
+
+    &--p {
+      font-family: map-get(variable.$fonts, "text");
+      font-size: 1.25rem;
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.6;
+      color: #ffffff; // SOLO texto de Sobre Nosotros en blanco
+    }
+  }
+
+  /* Main Content */
+  &-main {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    overflow: visible; // permite scroll de toda la página
+  }
+
+  /* Sección de Información de Tech Rent */
+/* Sección de Información de Tech Rent */
+.Contacts-infoTech {
+  display: flex;
+  justify-content: space-between; // separa texto e imagen
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: nowrap; // mantiene texto a la izquierda y la imagen a la derecha
+
+  &-text {
+    width: 50%;
+    min-width: 300px;
+
+    h2 {
+      font-family: map-get(variable.$fonts, "title");
+      color: map-get(variable.$colors, "primary");
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: map-get(variable.$fonts, "text");
+      color: var(--primary-color);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .Contacts-infoTech-features {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: map-get(variable.$colors, "black");
+      }
+    }
+  }
+
+  &-img {
+    flex: 1; // ocupa el espacio restante
+    min-width: 300px;
+    display: flex; 
+    justify-content: center; // empuja la imagen a la derecha
+
+    &--img {
+      width: 100%;
+      max-width: 400px; // controla tamaño
+      height: auto;
+      border-radius: 1rem;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  /* Responsividad: en pantallas pequeñas, texto arriba y imagen centrada abajo */
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    &-img {
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    &-text {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+  /* Misión y Visión */
+  &-missionVision {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .mission, .vision {
+      flex: 1 1 300px;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+      img.Contacts-missionVision-img {
+        width: 100%;
+        height: 16rem;
+        object-fit: cover;
+      }
+
+      .text {
+        padding: 2rem;
+
+        h3 {
+          color: map-get(variable.$colors, "primary");
+          font-family: map-get(variable.$fonts, "title");
+          font-size: 1.75rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-family: map-get(variable.$fonts, "text");
+          color: var(--primary-color);
+          line-height: 1.6;
+        }
+
+        svg {
+          margin-bottom: 1rem;
+          color: map-get(variable.$colors, "primary");
+        }
+      }
+    }
+  }
+
+  /* Valores */
+  &-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+
+    .value-card {
+      background: map-get(variable.$colors, "primary");
+      color: var(--second-color);
+      text-align: center;
+      padding: 2rem;
+      border-radius: 1.5rem;
+
+      h4 {
+        margin-top: 1rem;
+        font-family: map-get(variable.$fonts, "title");
+      }
+
+      p {
+        margin-top: 0.5rem;
+        font-family: map-get(variable.$fonts, "text");
+        font-size: 0.875rem;
+      }
+
+      svg {
+        margin-bottom: 1rem;
+        color: var(--second-color);
+      }
+    }
+  }
+   /* Footer */
+  &-footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: map-get(variable.$colors, "black");
+    color: var(--second-color);
+    font-family: map-get(variable.$fonts, "text");
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+}
+
+
+/* Asegura scroll completo de la página */
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
