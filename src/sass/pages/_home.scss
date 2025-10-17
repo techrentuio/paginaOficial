@@ -2,72 +2,106 @@
 @use "../base/variables" as variable;
 
 .Home {
-    
-    height: 100vh;
-    
-    &-main{
-        @include mixin.flex(space-around);
-        height: 70%;
-        padding: 1.25rem;
-        overflow-y: auto; /* Agregar esta línea */
-    
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &-main {
+    @include mixin.flex(space-around, center);
+    flex-wrap: wrap; /* ✅ hace que se acomode en móviles */
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  &-info {
+    flex: 1 1 400px; /* ✅ adaptable */
+    @include mixin.flex(center, flex-start, column);
+    gap: 2.5rem;
+    padding: 2rem;
+
+    &--h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      color: map-get(variable.$colors, "black");
+      font-family: map-get(variable.$fonts, "title");
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+        text-align: center;
+      }
     }
 
-    &-info {
-        height: 100%;
-        width: 50%;
-        @include mixin.flex(center, flex-start, column);
-        gap: 2.5rem;
-        padding: 2.1875rem;
-        &--h1{
-            @include mixin.flex(center, flex-start, column);
-            font-size: 3.4375rem;
-            gap: 2.8125rem;
-            width: 100%;
-            color: map-get(variable.$colors, "black" );
-            font-family: map-get(variable.$fonts, "title" );
-        }
-        &--span{
-          
-            
-            @keyframes typing {
-              from { width: 0; }
-              to { width: 100%; }
-            }
-            color: map-get(variable.$colors, "bold" );
-            font-family: map-get(variable.$fonts, "text" );
-            padding-top: .5em;
-            padding-bottom: .5em;
-            overflow: hidden; /* Para ocultar el texto que aún no se ha escrito */
-            border-right: .1em solid var(--second-color); /* Simula el cursor de escritura */
-            white-space: nowrap; /* Evita que el texto se rompa */
-            animation: typing 3s steps(20, end); /* Controla la velocidad de escritura */
-        }
+    &--span {
+      color: map-get(variable.$colors, "bold");
+      font-family: map-get(variable.$fonts, "text");
+      display: inline-block;
+      overflow: hidden;
+      border-right: 0.1em solid var(--second-color);
+      white-space: nowrap;
+      animation: typing 3s steps(20, end);
     }
-    
-    @keyframes moveImage {
-        0% {
-          transform: translateX(10px);
-        }
-        50% {
-          transform: translateX(30px); /* Mover la imagen 50px hacia la derecha */
-        }
-        100% {
-          transform: translateX(0);
-        }
+
+    @keyframes typing {
+      from {
+        width: 0;
       }
-      
-      .Home-photo {
-        width: 400px;
-        height: 400px;
-        animation: moveImage 5s infinite; /* Aplicar la animación durante 5 segundos y repetirla infinitamente */
+      to {
+        width: 100%;
       }
-      
-    &-footer{
-        height: 30%;
-        @include mixin.flex;
-        font-size: 60px;
-        color: map-get(variable.$colors, "black" );
-        font-family: map-get(variable.$fonts, "subtitle" );
     }
+  }
+
+  .Home-photo {
+    flex: 1 1 300px; /* ✅ adaptable */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .Home-img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      animation: moveImage 5s infinite;
+    }
+  }
+
+  @keyframes moveImage {
+    0% {
+      transform: translateX(10px);
+    }
+    50% {
+      transform: translateX(30px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  &-footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+    color: map-get(variable.$colors, "black");
+    font-family: map-get(variable.$fonts, "subtitle");
+  }
+
+  /* ✅ Responsividad adicional */
+  @media (max-width: 768px) {
+    &-main {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .Home-photo {
+      order: -1; /* imagen arriba en móviles */
+    }
+
+    .Home-button {
+      align-self: center;
+    }
+  }
 }
