@@ -34,4 +34,22 @@ body {
       color: map-get(variable.$colors, "bold" );
     }
   }
+  &-cart {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: map-get(variable.$colors, "second"); // usa el color claro de tu navbar
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: map-get(variable.$colors, "primary");
+      transform: scale(1.1);
+    }
+
+    svg {
+      stroke-width: 1.8;
+    }
+  }
 }
